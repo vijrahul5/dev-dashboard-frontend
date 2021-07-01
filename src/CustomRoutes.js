@@ -1,27 +1,15 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { useState, useEffect } from "react";
 import Loader from "./components/Loader/Loader";
-import axios from "axios";
+import { useVerifyPublicRoute, useVerifyPrivateRoute } from "./Api";
 
 export const PublicRoute = ({ component: Component, ...rest }) => {
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        (async function () {
-            try {
-                const res = await axios.get("/api/auth/verify");
-                if (res.data.status === "Failed") {
-                    setLoading(false);
-                } else {
-                    window.location.replace("/dashboard");
-                }
-            } catch (err) {
-                alert(err.message);
-            }
-        })();
-    }, []);
+    const [loading, error] = useVerifyPublicRoute(true, false);
+    if (error !== false) {
+        return <h1>{error}</h1>;
+    }
     if (loading === true) {
-        return <Loader/>;
+        return <Loader />;
     }
     return (
         <Route
@@ -34,23 +22,12 @@ export const PublicRoute = ({ component: Component, ...rest }) => {
 };
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        (async function () {
-            try {
-                const res = await axios.get("/api/auth/verify");
-                if (res.data.status === "Success") {
-                    setLoading(false);
-                } else {
-                    window.location.replace("/signin");
-                }
-            } catch (err) {
-                alert(err.message);
-            }
-        })();
-    }, []);
+    const [loading, error] = useVerifyPrivateRoute(true, false);
+    if (error !== false) {
+        return <h1>{error}</h1>;
+    }
     if (loading === true) {
-        return <Loader/>;
+        return <Loader />;
     }
     return (
         <Route

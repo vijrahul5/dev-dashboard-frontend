@@ -1,9 +1,8 @@
 import React from "react";
 
 function TeamMember({ teamMember }) {
-    console.log(teamMember);
     return (
-        <ul >
+        <ul>
             <li>
                 <p className="param">Name:</p>
                 <p className="value">{teamMember.name}</p>

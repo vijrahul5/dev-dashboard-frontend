@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { PublicRoute, ProtectedRoute } from "./CustomRoutes";
 import SignIn from "./layouts/SignIn";

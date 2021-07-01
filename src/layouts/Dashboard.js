@@ -1,15 +1,15 @@
 import SidebarMenu from "../components/Sidebar/Sidebar";
 import Team from "../layouts/Team";
 import Profile from "../layouts/Profile";
-import Home from "../layouts/Home";
+import StandUp from "./StandUp";
 
 export default function Dashboard() {
     return (
         <>
             <SidebarMenu />
-            <Home />
-            <Team />
             <Profile />
+            <StandUp />
+            <Team />
         </>
     );
 }

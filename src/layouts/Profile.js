@@ -1,147 +1,39 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import Loader from "../components/Loader/Loader";
+import { useFetchEmployeeData } from "../Api";
 
 function Profile() {
-    const [loading, setLoading] = useState(true);
-    const [employee, setEmployee] = useState();
+    const [loading, data, error] = useFetchEmployeeData();
 
-    useEffect(() => {
-        (async function () {
-            try {
-                const res = await axios.get("/api/employee/profile");
-                if (res.data.status === "Success") {
-                    setEmployee(res.data.employee);
-                    setLoading(false);
-                }
-            } catch (err) {
-                alert(err.message);
-            }
-        })();
-    }, []);
+    if (error !== false) {
+        return <h1>{error}</h1>;
+    }
 
     if (loading) {
-        return <Loader/>;
+        return <Loader />;
     } else {
         return (
-            <>
-                <div className="container emp-profile">
-                    <form method="post">
-                        <div className="row">
-                            <div className="col-md-4">
-                                <div className="profile-img">
-                                    <img
-                                        src={employee.picture}
-                                        alt=""
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="profile-head">
-                                    <h5>{employee.name}</h5>
-                                    <ul
-                                        className="nav nav-tabs"
-                                        id="myTab"
-                                        role="tablist"
-                                    >
-                                        <li className="nav-item">
-                                            <a
-                                                className="nav-link active"
-                                                id="home-tab"
-                                                data-toggle="tab"
-                                                href="#home"
-                                                role="tab"
-                                                aria-controls="home"
-                                                aria-selected="true"
-                                            >
-                                                About
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="col-md-2">
-                                <input
-                                    type="submit"
-                                    className="profile-edit-btn"
-                                    name="btnAddMore"
-                                    value="Edit Profile"
-                                />
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-8">
-                                <div
-                                    className="tab-content profile-tab"
-                                    id="myTabContent"
-                                >
-                                    <div
-                                        className="tab-pane fade show active"
-                                        id="home"
-                                        role="tabpanel"
-                                        aria-labelledby="home-tab"
-                                    >
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Name</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>{employee.name}</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>{employee.email}</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Job Title</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>Web Developer</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>City</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>{employee.city || "----"}</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>State</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>
-                                                    {employee.state || "----"}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <label>Address</label>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p>
-                                                    {employee.address || "----"}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+            <div className="profile">
+                <div className="img-holder">
+                    <img src={data.picture} alt="" />
                 </div>
-            </>
+                <ul>
+                    <li>
+                        <p className="param">Name:</p>
+                        <p className="value">{data.name}</p>
+                    </li>
+                    <li>
+                        <p className="param">Email:</p>
+                        <p className="value">{data.email}</p>
+                    </li>
+                    <li>
+                        <p className="param">Reports to:</p>
+                        <p className="value">
+                            {data.manager ? data.manager.email : "None"}
+                        </p>
+                    </li>
+                </ul>
+            </div>
         );
     }
 }

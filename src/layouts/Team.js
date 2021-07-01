@@ -1,18 +1,25 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import TeamMember from "./TeamMember";
 import Loader from "../components/Loader/Loader";
+import { useUpdateTeam, useFetchEmployeeTeamData } from "../Api";
 
 function Team() {
-    const [loading, setLoading] = useState(true);
-    const [team, setTeam] = useState({});
-
+    const [loading, data, error] = useFetchEmployeeTeamData();
+    const [addError, deleteError, addTeamMember, deleteTeamMember] =
+        useUpdateTeam();
+    if (error !== false) {
+        return <h1>{error}</h1>;
+    }
+    if (deleteError !== false) {
+        return <h1>{deleteError}</h1>;
+    }
+    if (addError !== false) {
+        return <h1>{addError}</h1>;
+    }
     async function handleAddBtn(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
-        console.log(data);
         for (let key in data) {
             if (data[key] === "") {
                 alert("Please Fill In All The Fields");
@@ -22,22 +29,12 @@ function Team() {
         document.querySelectorAll(".teamForm input").forEach((element) => {
             element.value = "";
         });
-        try {
-            const res = await axios.post("/api/employee/team", data);
-            if (res.data.status === "Success") {
-                alert("Team Member Added");
-            } else {
-                throw new Error(res.data.status);
-            }
-        } catch (err) {
-            alert(err.message);
-        }
+        addTeamMember(data);
     }
     async function handleDeleteBtn(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
-        console.log(data);
         for (let key in data) {
             if (data[key] === "") {
                 alert("Please Fill In All The Fields");
@@ -47,35 +44,8 @@ function Team() {
         document.querySelectorAll(".teamForm input").forEach((element) => {
             element.value = "";
         });
-        try {
-            const res = await axios.delete("/api/employee/team", {
-                data: data,
-            });
-            if (res.data.status === "Success") {
-                alert("Team Member Deleted");
-            } else {
-                throw new Error(res.data.status);
-            }
-        } catch (err) {
-            alert(err.message);
-        }
+        deleteTeamMember(data);
     }
-    useEffect(() => {
-        (async function () {
-            try {
-                const res = await axios.get("/api/employee/team");
-                if (res.data.status === "Success") {
-                    setTeam(res.data.teamStandUp);
-                    setLoading(false);
-                    console.log(res.data.teamStandUp);
-                } else {
-                    console.log(res.data.status);
-                }
-            } catch (err) {
-                alert(err.message);
-            }
-        })();
-    }, []);
 
     if (loading === true) {
         return <Loader />;
@@ -94,7 +64,7 @@ function Team() {
                     </div>
                     <input
                         type="submit"
-                        className="submit btn btn-success"
+                        className="submit btn btn-dark"
                         value="Add"
                     />
                 </form>
@@ -112,16 +82,16 @@ function Team() {
                     </div>
                     <input
                         type="submit"
-                        className="submit btn btn-success"
+                        className="submit btn btn-dark"
                         value="Delete"
                     />
                 </form>
-                {team ? (
+                {data.length !== 0 ? (
                     <ul className="teamStandUpList">
-                        {team.map((teamMember) => {
+                        {data.map((teamMember) => {
                             return (
                                 <TeamMember
-                                    key={teamMember.employeeId}
+                                    key={teamMember.email}
                                     teamMember={teamMember}
                                 />
                             );

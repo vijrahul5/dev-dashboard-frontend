@@ -4,6 +4,15 @@
     padding: 0px;
 }
 
+html {
+    font-size: 100%;
+    font-family: sans-serif;
+
+}
+:root {
+    /* --color-primary: rgb(1, 83, 204); */
+    --color-primary: black;
+}
 body {
     min-height: 100vh;
     display: flex;
@@ -13,7 +22,6 @@ body {
 
 body,
 html,
-.App,
 #root,
 .outer {
     width: 100%;
@@ -57,7 +65,7 @@ html,
     flex-direction: column;
     align-items: center;
 }
-.inner button{
+.inner button {
     margin-top: 2rem;
     border: 2px solid black;
     width: 70%;
@@ -80,23 +88,13 @@ html,
     font-weight: 400;
 }
 
-.forgot-password,
-.forgot-password a {
-    text-align: right;
-    font-size: 13px;
-    padding-top: 10px;
-    color: #7f7d7d;
-    margin: 0;
-}
 
-.forgot-password a {
-    color: #167bff;
-}
 
 .home {
-    background-image: url("./assets/main.jpg");
+    background-image: linear-gradient(to bottom,rgba(0,0,0,0.1),rgba(0,0,0,0.5)), url("./assets/main.png");
     background-blend-mode: luminosity;
     background-size: cover;
+    background-position: center;
     width: 100%;
     height: 100%;
     display: flex;
@@ -112,13 +110,13 @@ html,
 }
 
 .sidebar {
-    background-color: #060b26;
-    height: 4.5rem;
+    background-color: var(--color-primary);
+    height: 3.5rem;
     display: flex;
     justify-content: start;
     align-items: center;
 }
-.sidebar h1{
+.sidebar h1 {
     color: white;
     font-size: 1.5rem;
     width: 100%;
@@ -133,7 +131,7 @@ html,
 }
 
 .sidebar-menu {
-    background-color: #060b26;
+    background-color: var(--color-primary);
     width: 250px;
     height: 100vh;
     display: flex;
@@ -171,7 +169,8 @@ html,
 }
 
 .sidebar-text a:hover {
-    background-color: #1a83ff;
+    background-color: white;
+    color: var(--color-primary);
 }
 
 .sidebar-menu-items {
@@ -179,7 +178,7 @@ html,
 }
 
 .sidebar-toggle {
-    background-color: #060b26;
+    background-color: var(--color-primary);
     width: 100%;
     height: 80px;
     display: flex;
@@ -191,159 +190,138 @@ span {
     margin-left: 16px;
 }
 .teamStandUpList {
-  width: 70%;
-  height: auto;
-  max-height: 100vh;
-  overflow: scroll;
-  margin: auto;
-  margin-top: 4rem;
-  padding-left: 0px;
+    width: 40%;
+    height: auto;
+    max-height: 100vh;
+    overflow: scroll;
+    margin: auto;
+    margin-top: 4rem;
+    padding-left: 0px;
+    padding: 1rem;
+    border-top: 4px solid black;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .teamStandUpList ul {
-  list-style: none;
-  border: 1px solid black;
-  padding: 2rem;
-  margin-bottom: 0.5rem;
+    list-style: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
 }
-.teamStandUpList ul li{
-  display: flex;
+.teamStandUpList ul li {
+    display: flex;
     align-items: center;
+    font-size: 0.8rem;
+}
+.teamStandUpList ul .param {
+    width: 40%;
+    margin-bottom: 0.2rem;
 
 }
-.teamStandUpList ul .param{
-  width: 30%;
-}
-.teamStandUpList ul .value{
-  width: 70%;
-}
-.teamForm{
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  margin-top: 2rem;
-  align-items: center;
-}
-.teamForm div{
-  width: 65%;
-}
-.teamForm div input{
-  display: block;
-  width: 100%;
-}
-.teamForm .submit{
-  height: 60%;
-  padding: 0.5rem;
-  margin-left: 1rem;
-  margin-top: 1rem;
-}
-.standUpForm{
+.teamStandUpList ul .value {
     width: 60%;
-    background-color: lightblue;
-    padding: 2rem;
-    margin: auto;
-    margin-top: 2rem;
+    margin-bottom: 0.2rem;
 }
-.standUpForm input{
+.teamForm {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 1.5rem;
+    align-items: center;
+    border-top: 4px solid black;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1rem;
+    font-size: 0.8rem;
+}
+.teamForm div {
+    width: 100%;
+}
+.teamForm div input {
+    display: block;
+    width: 100%;
+    font-size: 0.8rem;
+}
+.teamForm .submit {
+    height: 60%;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
+.standUpForm {
+    border-top: 4px solid black;
+    width: 30%;
+    padding: 1rem;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+}
+.standUpForm input {
     display: block;
     margin-bottom: 1rem;
     overflow: scroll;
+    font-size: 0.8rem;
 }
 
-.emp-profile{
-    padding: 3%;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    border-radius: 0.5rem;
-    background: #fff;
-    border: 2px black solid;
+.profile {
+    width: 14rem;
+    height: 14rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 4px solid black;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: auto;
+    margin-top: 2rem;
+    /* padding: 0.5rem; */
+
 }
-.profile-img{
-    text-align: center;
+hr{
+    border: 0;
+    clear: both;
+    display: block;
+    width: 96%;
+    background-color: blue;
+    height: 1px;
 }
-.profile-img img{
-    width: 70%;
+.profile .img-holder {
+    margin-top: 1rem;
+    width: 50%;
+    height: 50%;
+    border: 0.1rem solid black;
+    object-fit: cover;
+}
+.profile img{
     height: 100%;
+    width: 100%;
 }
-.profile-img .file {
-    position: relative;
-    overflow: hidden;
-    margin-top: -20%;
-    width: 70%;
-    border: none;
-    border-radius: 0;
-    font-size: 15px;
-    background: #212529b8;
-}
-.profile-img .file input {
-    position: absolute;
-    opacity: 0;
-    right: 0;
-    top: 0;
-}
-.profile-head h5{
-    color: #333;
-}
-.profile-head h6{
-    color: #0062cc;
-}
-.profile-edit-btn{
-    border: none;
-    border-radius: 1.5rem;
-    width: 70%;
-    padding: 2%;
-    font-weight: 600;
-    color: #6c757d;
-    cursor: pointer;
-}
-.proile-rating{
-    font-size: 12px;
-    color: #818182;
-    margin-top: 5%;
-}
-.proile-rating span{
-    color: #495057;
-    font-size: 15px;
-    font-weight: 600;
-}
-.profile-head .nav-tabs{
-    margin-bottom:5%;
-}
-.profile-head .nav-tabs .nav-link{
-    font-weight:600;
-    border: none;
-}
-.profile-head .nav-tabs .nav-link.active{
-    border: none;
-    border-bottom:2px solid #0062cc;
-}
-.profile-work{
-    padding: 14%;
-    margin-top: -15%;
-}
-.profile-work p{
-    font-size: 12px;
-    color: #818182;
-    font-weight: 600;
-    margin-top: 10%;
-}
-.profile-work a{
-    text-decoration: none;
-    color: #495057;
-    font-weight: 600;
-    font-size: 14px;
-}
-.profile-work ul{
+.profile ul {
+    width: 100%;
+    height: 40%;
     list-style: none;
+    margin-top: 1rem;
+    padding: 0.5rem;
 }
-.profile-tab label{
-    font-weight: 600;
+.profile li {
+    color: black;
+    font-size: 0.8rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.2rem;
 }
-.profile-tab p{
-    font-weight: 600;
-    color: #0062cc;
+.profile .param {
+    width: 35%;
+    margin: 0px;
 }
-.loader{
+.profile .value {
+    width: 65%;
+    margin: 0px;
+}
+.loader {
     width: 70%;
     height: 10rem;
     background-color: white;
