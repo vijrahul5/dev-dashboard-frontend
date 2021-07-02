@@ -12,7 +12,8 @@ function App() {
             <Switch>
                 <PublicRoute exact path="/" component={LandingPage} />
                 <PublicRoute exact path="/signin" component={SignIn} />
-                <ProtectedRoute path="/dashboard" component={Dashboard} />
+                <ProtectedRoute path="/dashboard" component={Dashboard} /> 
+                {/* {Routes beginning with '/dashboard' are private and have to undergo authentication by the backend on refresh } */}
             </Switch>
         </Router>
     );

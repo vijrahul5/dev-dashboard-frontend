@@ -1,7 +1,9 @@
 import axios from "axios";
 
 class Auth {
+    // Class that provides functions for authentication : 'login' and 'logout'
     async login(tokenId) {
+        // Sends a post request to the backend server with tokenid from google and receives a session-token in the cookies
         try {
             const res = await axios.post("/api/auth/signin", {
                 token: tokenId,
@@ -17,6 +19,7 @@ class Auth {
         }
     }
     async logout() {
+        // Sends a get request to the backend server which clears the session token cookie
         try {
             const res = await axios.get("/api/auth/signout");
             if (res.data.status === "Success") {

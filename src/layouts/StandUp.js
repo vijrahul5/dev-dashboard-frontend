@@ -3,8 +3,9 @@ import Loader from "../components/Loader/Loader";
 import { useFetchEmployeeStandUp, useUpdateStandUp } from "../Api";
 
 function StandUp() {
-    const [loading, data, error] = useFetchEmployeeStandUp();
-    const [addError, editError, addStandUp, editStandUp] = useUpdateStandUp();
+    // Component for Stand Up message submission or editing
+    const [loading, data, error] = useFetchEmployeeStandUp(); // Fetches employee's stand up for the day
+    const [addError, editError, addStandUp, editStandUp] = useUpdateStandUp(); // Provides functions for adding or deleting stand up
 
     if (error !== false) {
         return <h1>{error}</h1>;
@@ -16,7 +17,7 @@ function StandUp() {
         return <h1>{editError}</h1>;
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e) { // Event Listener for adding a standup
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
@@ -32,7 +33,7 @@ function StandUp() {
         addStandUp(data);
     }
 
-    function handleEdit(e) {
+    function handleEdit(e) {  // Event Listener for editing a standup
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());

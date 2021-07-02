@@ -4,9 +4,10 @@ import Loader from "../components/Loader/Loader";
 import { useUpdateTeam, useFetchEmployeeTeamData } from "../Api";
 
 function Team() {
-    const [loading, data, error] = useFetchEmployeeTeamData();
+    // Component for accessing team data and their stand ups
+    const [loading, data, error] = useFetchEmployeeTeamData(); // Fetches the logged in employee's team data and their stand ups
     const [addError, deleteError, addTeamMember, deleteTeamMember] =
-        useUpdateTeam();
+        useUpdateTeam(); // Provides functions for adding or deleting a team member
     if (error !== false) {
         return <h1>{error}</h1>;
     }
@@ -17,6 +18,7 @@ function Team() {
         return <h1>{addError}</h1>;
     }
     async function handleAddBtn(e) {
+        // Event listener for adding a team member
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
@@ -32,6 +34,7 @@ function Team() {
         addTeamMember(data);
     }
     async function handleDeleteBtn(e) {
+        // Event Listener for deleting a team member
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());

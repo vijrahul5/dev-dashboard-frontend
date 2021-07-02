@@ -6,7 +6,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export default class SignIn extends Component {
+    // Component for the sign in page
     async handleGoogleLoginSuccess({ tokenId }) {
+        // Receives a tokenid from google if login is successful
         Auth.login(tokenId);
     }
     async handleGoogleLoginFailiure(res) {

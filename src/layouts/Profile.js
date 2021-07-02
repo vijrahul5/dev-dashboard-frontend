@@ -3,7 +3,7 @@ import Loader from "../components/Loader/Loader";
 import { useFetchEmployeeData } from "../Api";
 
 function Profile() {
-    const [loading, data, error] = useFetchEmployeeData();
+    const [loading, data, error] = useFetchEmployeeData(); // Fetches employee data using a custom hook
 
     if (error !== false) {
         return <h1>{error}</h1>;

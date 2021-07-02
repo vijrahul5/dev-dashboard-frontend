@@ -3,7 +3,9 @@ import { Route } from "react-router-dom";
 import Loader from "./components/Loader/Loader";
 import { useVerifyPublicRoute, useVerifyPrivateRoute } from "./Api";
 
-export const PublicRoute = ({ component: Component, ...rest }) => {
+//Functions for providing protected frontend routing
+
+export const PublicRoute = ({ component: Component, ...rest }) => { // Creates a public route which first verifies if a user is authenticated or not. If yes, then redirects to the dashboard only.
     const [loading, error] = useVerifyPublicRoute(true, false);
     if (error !== false) {
         return <h1>{error}</h1>;
@@ -21,7 +23,7 @@ export const PublicRoute = ({ component: Component, ...rest }) => {
     );
 };
 
-export const ProtectedRoute = ({ component: Component, ...rest }) => {
+export const ProtectedRoute = ({ component: Component, ...rest }) => { // Creates a private route which first verifies if a user is authenticated or not. If not, then redirects to the signin page only.
     const [loading, error] = useVerifyPrivateRoute(true, false);
     if (error !== false) {
         return <h1>{error}</h1>;

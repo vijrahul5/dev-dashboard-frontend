@@ -1,6 +1,7 @@
 import React from "react";
 
 function TeamMember({ teamMember }) {
+    // Component for displaying a single team member's basic info and stand ups for the day
     return (
         <ul>
             <li>
