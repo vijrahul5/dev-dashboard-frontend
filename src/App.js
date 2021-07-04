@@ -11,23 +11,20 @@ import Dashboard from "./layouts/Dashboard";
 const engine = new Styletron();
 
 function App() {
-    return (
-        <StyletronProvider value={engine}>
-            <BaseProvider theme={LightTheme}>
-                <Router>
-                    <Switch>
-                        <PublicRoute exact path="/" component={LandingPage} />
-                        <PublicRoute exact path="/signin" component={SignIn} />
-                        <ProtectedRoute
-                            path="/dashboard"
-                            component={Dashboard}
-                        />
-                        {/* {Routes beginning with '/dashboard' are private and have to undergo authentication by the backend on refresh } */}
-                    </Switch>
-                </Router>
-            </BaseProvider>
-        </StyletronProvider>
-    );
+  return (
+    <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        <Router>
+          <Switch>
+            <PublicRoute exact path="/" component={LandingPage} />
+            <PublicRoute exact path="/signin" component={SignIn} />
+            <ProtectedRoute path="/dashboard" component={Dashboard} />
+            {/* {Routes beginning with '/dashboard' are private and have to undergo authentication by the backend on refresh } */}
+          </Switch>
+        </Router>
+      </BaseProvider>
+    </StyletronProvider>
+  );
 }
 
 export default App;

@@ -6,7 +6,7 @@ import { NotificationContainer } from "react-notifications";
 import Notification from "../Notify/Notification";
 import Widgetjira from "../WidgetJira";
 
-const Jira = () => {
+const JiraDashboard = () => {
   const { doneAuthentication } = useAuthorize();
 
   return (
@@ -18,4 +18,4 @@ const Jira = () => {
   );
 };
 
-export default Jira;
+export default JiraDashboard;
