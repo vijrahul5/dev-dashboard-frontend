@@ -1,10 +1,10 @@
 import React from "react";
-import Spinner from "react-bootstrap/Spinner";
+import { Spinner } from "baseui/spinner";
 
 function Loader() {
     return (
         <div className="loader">
-            <Spinner animation="border" role="status"></Spinner>
+            <Spinner ></Spinner>
         </div>
     );
 }
